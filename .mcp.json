@@ -1,21 +1,6 @@
 {
   "name": "subscription-tracker-ai-mcp",
-  "description": "MEOK AI Labs \u2014 Subscription Tracker tools for AI agents and LLMs",
-  "vendor": "MEOK AI Labs",
-  "homepage": "https://meok.ai",
-  "repository": "https://github.com/CSOAI-ORG/subscription-tracker-ai-mcp",
-  "runtime": "python",
-  "entrypoint": "server.py",
-  "tools": [
-    "add_subscription",
-    "get_subscriptions"
-  ],
-  "categories": [
-    "Finance",
-    "Business"
-  ],
-  "pricing": {
-    "free": "50 calls/day",
-    "pro": "$9/mo"
-  }
+  "description": "Track recurring subscriptions, calculate monthly and yearly totals, and identify upcoming renewals.",
+  "version": "1.0.0",
+  "tools": []
 }
