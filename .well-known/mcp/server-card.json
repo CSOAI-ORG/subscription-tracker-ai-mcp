@@ -1,0 +1,52 @@
+{
+  "name": "subscription-tracker-ai",
+  "description": "Track SaaS subscriptions, renewal dates, spending, and find duplicate services. By MEOK AI Labs.",
+  "version": "1.0.0",
+  "protocol_version": "2025-11-25",
+  "publisher": {
+    "name": "MEOK AI Labs",
+    "url": "https://meok.ai",
+    "email": "nicholas@meok.ai"
+  },
+  "repository": "https://github.com/CSOAI-ORG/subscription-tracker-ai-mcp",
+  "license": "MIT",
+  "transport": [
+    "stdio",
+    "streamable-http"
+  ],
+  "authentication": {
+    "type": "api-key",
+    "free_tier": true,
+    "free_limit": "15 calls/day"
+  },
+  "tools": [
+    {
+      "name": "add_subscription",
+      "description": "Add a subscription to track. Cost in USD/month. Billing cycle: monthly, yearly, quarterly."
+    },
+    {
+      "name": "get_total_spend",
+      "description": "Calculate total subscription spend. Period: monthly, yearly, daily."
+    },
+    {
+      "name": "list_subscriptions",
+      "description": "List all tracked subscriptions. Sort by: cost, name, category, date."
+    },
+    {
+      "name": "find_duplicates",
+      "description": "Find potentially duplicate or overlapping subscriptions in the same category."
+    }
+  ],
+  "categories": [
+    "AI & Machine Learning"
+  ],
+  "pricing": {
+    "free": {
+      "calls_per_day": 15
+    },
+    "pro": {
+      "price": "$29/month",
+      "url": "https://meok.ai/pricing"
+    }
+  }
+}

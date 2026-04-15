@@ -3,11 +3,14 @@
 import sys, os
 sys.path.insert(0, os.path.expanduser('~/clawd/meok-labs-engine/shared'))
 from auth_middleware import check_access
+from persistence import ServerStore
 
 import json
 from datetime import datetime, timezone
 from collections import defaultdict
 from mcp.server.fastmcp import FastMCP
+
+_store = ServerStore("subscription-tracker-ai")
 
 FREE_DAILY_LIMIT = 15
 _usage = defaultdict(list)
@@ -16,9 +19,6 @@ def _rl(c="anon"):
     _usage[c] = [t for t in _usage[c] if (now-t).total_seconds() < 86400]
     if len(_usage[c]) >= FREE_DAILY_LIMIT: return json.dumps({"error": f"Limit {FREE_DAILY_LIMIT}/day"})
     _usage[c].append(now); return None
-
-# In-memory subscription store
-_subscriptions: list[dict] = []
 
 # Category mapping for duplicate detection
 _CATEGORIES = {
@@ -66,7 +66,7 @@ def add_subscription(name: str, cost_monthly: float, billing_cycle: str = "month
     else:
         effective_monthly = cost_monthly
     sub = {
-        "id": len(_subscriptions) + 1,
+        "id": _store.list_length("subscriptions") + 1,
         "name": name,
         "cost_monthly": round(cost_monthly, 2),
         "billing_cycle": billing_cycle,
@@ -75,8 +75,9 @@ def add_subscription(name: str, cost_monthly: float, billing_cycle: str = "month
         "added_at": datetime.now(timezone.utc).isoformat(),
         "active": True,
     }
-    _subscriptions.append(sub)
-    total_monthly = sum(s["cost_monthly"] for s in _subscriptions if s["active"])
+    _store.append("subscriptions", sub)
+    all_subs = _store.list("subscriptions")
+    total_monthly = sum(s["cost_monthly"] for s in all_subs if s["active"])
     return json.dumps({
         "added": sub,
         "total_subscriptions": sum(1 for s in _subscriptions if s["active"]),
@@ -91,7 +92,7 @@ def get_total_spend(period: str = "monthly", api_key: str = "") -> str:
     if not allowed:
         return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
     if err := _rl(): return err
-    active = [s for s in _subscriptions if s["active"]]
+    active = [s for s in _store.list("subscriptions") if s["active"]]
     if not active:
         return json.dumps({"message": "No active subscriptions tracked yet.", "total": 0})
     monthly_total = sum(s["cost_monthly"] for s in active)
@@ -125,7 +126,8 @@ def list_subscriptions(active_only: bool = True, sort_by: str = "cost", api_key:
     if not allowed:
         return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
     if err := _rl(): return err
-    subs = _subscriptions if not active_only else [s for s in _subscriptions if s["active"]]
+    all_subs = _store.list("subscriptions")
+    subs = all_subs if not active_only else [s for s in all_subs if s["active"]]
     if not subs:
         return json.dumps({"message": "No subscriptions found.", "subscriptions": []})
     sort_keys = {
@@ -154,7 +156,7 @@ def find_duplicates(api_key: str = "") -> str:
     if not allowed:
         return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
     if err := _rl(): return err
-    active = [s for s in _subscriptions if s["active"]]
+    active = [s for s in _store.list("subscriptions") if s["active"]]
     if len(active) < 2:
         return json.dumps({"message": "Need at least 2 subscriptions to check for duplicates.", "duplicates": []})
     # Group by category
