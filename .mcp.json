@@ -1,6 +1,6 @@
 {
   "name": "subscription-tracker-ai-mcp",
-  "description": "> **By [MEOK AI Labs](https://meok.ai)** \u2014 Track SaaS subscriptions, renewal dates, spending, and find duplicate services. By MEOK AI Labs.",
+  "description": "MCP server for subscription tracker ai. Features add subscription, get total spend, list subscriptions. From MEOK AI Labs.",
   "version": "1.0.0",
   "tools": [
     {

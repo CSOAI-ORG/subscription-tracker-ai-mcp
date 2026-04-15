@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 [project]
 name = "subscription-tracker-ai-mcp"
 version = "1.0.0"
-description = "MEOK AI Labs — subscription-tracker-ai-mcp"
+description = "MCP server for subscription tracker ai. Features add subscription, get total spend, list subscriptions. From MEOK AI Labs."
 license = {file = "LICENSE"}
 requires-python = ">=3.10"
 authors = [{name = "MEOK AI Labs", email = "nicholas@meok.ai"}]
