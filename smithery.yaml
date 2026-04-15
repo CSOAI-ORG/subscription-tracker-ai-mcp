@@ -1,10 +1,43 @@
 name: subscription-tracker-ai-mcp
-description: MEOK AI Labs MCP Server
+description: Track SaaS subscriptions, renewal dates, spending, and find duplicate
+  services. By MEOK AI Labs.
 version: 1.0.0
 tools:
 - name: add_subscription
-  description: Add a subscription
-  parameters: []
-- name: get_subscriptions
-  description: List subscriptions
+  description: 'Add a subscription to track. Cost in USD/month. Billing cycle: monthly,
+    yearly, quarterly.'
+  parameters:
+  - name: name
+    type: string
+    required: true
+  - name: cost_monthly
+    type: number
+    required: true
+  - name: billing_cycle
+    type: string
+    required: false
+  - name: renewal_date
+    type: string
+    required: false
+  - name: category
+    type: string
+    required: false
+- name: get_total_spend
+  description: 'Calculate total subscription spend. Period: monthly, yearly, daily.'
+  parameters:
+  - name: period
+    type: string
+    required: false
+- name: list_subscriptions
+  description: 'List all tracked subscriptions. Sort by: cost, name, category, date.'
+  parameters:
+  - name: active_only
+    type: boolean
+    required: false
+  - name: sort_by
+    type: string
+    required: false
+- name: find_duplicates
+  description: Find potentially duplicate or overlapping subscriptions in the same
+    category.
   parameters: []

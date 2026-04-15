@@ -1,20 +1,68 @@
 {
   "name": "subscription-tracker-ai-mcp",
-  "description": "> **By [MEOK AI Labs](https://meok.ai)** \u2014 MEOK AI Labs MCP Server",
+  "description": "> **By [MEOK AI Labs](https://meok.ai)** \u2014 Track SaaS subscriptions, renewal dates, spending, and find duplicate services. By MEOK AI Labs.",
   "version": "1.0.0",
   "tools": [
     {
       "name": "add_subscription",
-      "description": "Add a subscription",
+      "description": "Add a subscription to track. Cost in USD/month. Billing cycle: monthly, yearly, quarterly.",
       "parameters": {
         "type": "object",
-        "properties": {},
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "cost_monthly": {
+            "type": "number"
+          },
+          "billing_cycle": {
+            "type": "string"
+          },
+          "renewal_date": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "cost_monthly"
+        ]
+      }
+    },
+    {
+      "name": "get_total_spend",
+      "description": "Calculate total subscription spend. Period: monthly, yearly, daily.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "period": {
+            "type": "string"
+          }
+        },
         "required": []
       }
     },
     {
-      "name": "get_subscriptions",
-      "description": "List subscriptions",
+      "name": "list_subscriptions",
+      "description": "List all tracked subscriptions. Sort by: cost, name, category, date.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "active_only": {
+            "type": "boolean"
+          },
+          "sort_by": {
+            "type": "string"
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "find_duplicates",
+      "description": "Find potentially duplicate or overlapping subscriptions in the same category.",
       "parameters": {
         "type": "object",
         "properties": {},
