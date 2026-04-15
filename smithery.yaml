@@ -1,4 +1,10 @@
 name: subscription-tracker-ai-mcp
 description: MEOK AI Labs MCP Server
 version: 1.0.0
-tools: []
+tools:
+- name: add_subscription
+  description: Add a subscription
+  parameters: []
+- name: get_subscriptions
+  description: List subscriptions
+  parameters: []
