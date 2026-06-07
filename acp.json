@@ -1,0 +1,22 @@
+{
+  "acpVersion": "0.1",
+  "agent": {
+    "name": "subscription-tracker-ai-mcp",
+    "description": "MCP server for subscription tracker ai. Features add subscription, get total spend, list",
+    "version": "1.0.5",
+    "provider": "MEOK AI Labs",
+    "interfaces": [
+      {
+        "type": "mcp",
+        "transport": "stdio",
+        "package": "subscription-tracker-ai-mcp"
+      }
+    ],
+    "capabilities": [
+      "add_subscription",
+      "get_total_spend",
+      "list_subscriptions",
+      "find_duplicates"
+    ]
+  }
+}

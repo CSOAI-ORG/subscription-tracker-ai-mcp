@@ -1,0 +1,59 @@
+{
+  "name": "subscription-tracker-ai-mcp",
+  "description": "MCP server for subscription tracker ai. Features add subscription, get total spend, list",
+  "url": "https://proofof.ai/scorecard/subscription-tracker-ai-mcp.html",
+  "version": "1.0.5",
+  "protocolVersion": "0.2.0",
+  "provider": {
+    "organization": "MEOK AI Labs",
+    "url": "https://meok.ai"
+  },
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "defaultInputModes": [
+    "text"
+  ],
+  "defaultOutputModes": [
+    "text"
+  ],
+  "skills": [
+    {
+      "id": "add_subscription",
+      "name": "Add Subscription",
+      "description": "add_subscription via subscription-tracker-ai-mcp",
+      "tags": [
+        "mcp",
+        "compliance"
+      ]
+    },
+    {
+      "id": "get_total_spend",
+      "name": "Get Total Spend",
+      "description": "get_total_spend via subscription-tracker-ai-mcp",
+      "tags": [
+        "mcp",
+        "compliance"
+      ]
+    },
+    {
+      "id": "list_subscriptions",
+      "name": "List Subscriptions",
+      "description": "list_subscriptions via subscription-tracker-ai-mcp",
+      "tags": [
+        "mcp",
+        "compliance"
+      ]
+    },
+    {
+      "id": "find_duplicates",
+      "name": "Find Duplicates",
+      "description": "find_duplicates via subscription-tracker-ai-mcp",
+      "tags": [
+        "mcp",
+        "compliance"
+      ]
+    }
+  ]
+}
