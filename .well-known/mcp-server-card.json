@@ -1,0 +1,25 @@
+{
+  "name": "subscription-tracker-ai-mcp",
+  "title": "Subscription Tracker Ai Mcp",
+  "description": "MCP server for subscription tracker ai. Features add subscription, get total spend, list subscriptions. From MEOK AI Labs.",
+  "version": "1.0.5",
+  "homepage": "https://meok.ai",
+  "license": "MIT",
+  "transport": {
+    "type": "stdio"
+  },
+  "tools": [
+    {
+      "name": "add_subscription"
+    },
+    {
+      "name": "get_total_spend"
+    },
+    {
+      "name": "list_subscriptions"
+    },
+    {
+      "name": "find_duplicates"
+    }
+  ]
+}

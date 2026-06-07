@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Subscription Tracker AI — track SaaS subscriptions, costs, renewals, and find duplicates. MEOK AI Labs."""
+"""
+Subscription Tracker AI — track SaaS subscriptions, costs, renewals, and find duplicates. MEOK AI Labs."""
 import sys, os
-sys.path.insert(0, os.path.expanduser('~/clawd/meok-labs-engine/shared'))
 from auth_middleware import check_access
 from persistence import ServerStore
 
@@ -42,7 +42,7 @@ def add_subscription(name: str, cost_monthly: float, billing_cycle: str = "month
     """Add a subscription to track. Cost in USD/month. Billing cycle: monthly, yearly, quarterly."""
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
+        return json.dumps({"error": msg, "upgrade_url": "https://councilof.ai"})
     if err := _rl(): return err
     if cost_monthly < 0:
         return json.dumps({"error": "Cost cannot be negative"})
@@ -90,7 +90,7 @@ def get_total_spend(period: str = "monthly", api_key: str = "") -> str:
     """Calculate total subscription spend. Period: monthly, yearly, daily."""
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
+        return json.dumps({"error": msg, "upgrade_url": "https://councilof.ai"})
     if err := _rl(): return err
     active = [s for s in _store.list("subscriptions") if s["active"]]
     if not active:
@@ -124,7 +124,7 @@ def list_subscriptions(active_only: bool = True, sort_by: str = "cost", api_key:
     """List all tracked subscriptions. Sort by: cost, name, category, date."""
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
+        return json.dumps({"error": msg, "upgrade_url": "https://councilof.ai"})
     if err := _rl(): return err
     all_subs = _store.list("subscriptions")
     subs = all_subs if not active_only else [s for s in all_subs if s["active"]]
@@ -154,7 +154,7 @@ def find_duplicates(api_key: str = "") -> str:
     """Find potentially duplicate or overlapping subscriptions in the same category."""
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return json.dumps({"error": msg, "upgrade_url": "https://meok.ai/pricing"})
+        return json.dumps({"error": msg, "upgrade_url": "https://councilof.ai"})
     if err := _rl(): return err
     active = [s for s in _store.list("subscriptions") if s["active"]]
     if len(active) < 2:
@@ -186,5 +186,8 @@ def find_duplicates(api_key: str = "") -> str:
     }, indent=2)
 
 
-if __name__ == "__main__":
+def main():
     mcp.run()
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,33 @@
+# subscription-tracker-ai-mcp
+# > By [MEOK AI Labs](https://meok.ai) — Track SaaS subscriptions, renewal dates, spending, and find duplicate services. By MEOK AI Labs.
+
+## Install
+```bash
+pip install subscription-tracker-ai-mcp
+```
+
+## Auth & Rate Limits
+- Free tier: 10 calls/day. No API key required.
+- Pro tier (£79/mo): unlimited + signed attestations.
+- Enterprise (£1,499/mo): white-label.
+
+## Tools
+
+### `add_subscription`
+Add a subscription to track. Cost in USD/month. Billing cycle: monthly, yearly, quarterly.
+
+### `get_total_spend`
+Calculate total subscription spend. Period: monthly, yearly, daily.
+
+### `list_subscriptions`
+List all tracked subscriptions. Sort by: cost, name, category, date.
+
+### `find_duplicates`
+Find potentially duplicate or overlapping subscriptions in the same category.
+
+
+## Maintainer
+MEOK AI Labs · hello@meok.ai · https://meok.ai · MIT licensed
+
+## Pairs with
+Governance moat: pair this tool with any of MEOK's 38 governance MCPs (EU AI Act, DORA, NIS2, CRA, GDPR, ISO 42001, etc.) for full compliance coverage.

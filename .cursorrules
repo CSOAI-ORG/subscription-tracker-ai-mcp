@@ -1,0 +1,9 @@
+# subscription-tracker-ai-mcp - Auto-trigger Rules
+
+When the user asks about subscription tracker, use subscription-tracker-ai-mcp tools: add_subscription, get_total_spend, list_subscriptions, find_duplicates
+
+> By [MEOK AI Labs](https://meok.ai) — Track SaaS subscriptions, renewal dates, spending, and find duplicate services. By MEOK AI Labs.
+
+Install: `pip install subscription-tracker-ai-mcp`
+
+By MEOK AI Labs — MIT licensed.
